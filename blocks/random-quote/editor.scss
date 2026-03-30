@@ -1,0 +1,10 @@
+// Editor styles for API v3
+.wp-block-random-quote-random-quote {
+    .components-spinner {
+        margin: 0 auto;
+    }
+    
+    .block-editor-block-preview__container & {
+        min-height: 100px;
+    }
+}

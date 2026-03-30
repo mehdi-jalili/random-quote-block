@@ -1,0 +1,60 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+# NetBeans
+nbproject/
+
+# Logs
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+*.log
+
+# Node modules and build tools
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build outputs from @wordpress/scripts
+blocks/**/index.js
+blocks/**/index.asset.php
+blocks/**/index.css
+blocks/**/index-rtl.css
+blocks/**/style-index.css
+blocks/**/style-index-rtl.css
+blocks/**/editor.css
+blocks/**/editor-rtl.css
+
+# PHPUnit / testing
+tests/coverage/
+.phpunit.result.cache
+.phpcs-cache
+.phpcs.xml
+phpcs.xml
+phpunit.xml
+
+# Composer (if used)
+vendor/
+composer.lock
+composer.phar
+
+# WordPress specific
+wp-cli.local.yml
+.DS_Store
+
+# Plugin zip files (if any)
+*.zip

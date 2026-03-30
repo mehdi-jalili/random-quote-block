@@ -1,0 +1,67 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "random-quote/random-quote",
+  "version": "1.0.0",
+  "title": "Random Quote",
+  "category": "widgets",
+  "icon": "format-quote",
+  "description": "Display a random quote from the database",
+  "keywords": ["quote", "random", "citation"],
+  "textdomain": "random-quote-block",
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "none"
+    },
+    "showAuthor": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "align": true,
+    "alignWide": true,
+    "anchor": true,
+    "className": true,
+    "color": {
+      "background": true,
+      "text": true,
+      "gradients": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true
+    },
+    "border": {
+      "radius": true,
+      "style": true,
+      "width": true,
+      "color": true
+    },
+    "html": false
+  },
+  "styles": [
+    {
+      "name": "default",
+      "label": "Default",
+      "isDefault": true
+    },
+    {
+      "name": "compact",
+      "label": "Compact"
+    },
+    {
+      "name": "elegant",
+      "label": "Elegant"
+    }
+  ],
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
