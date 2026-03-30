@@ -30,9 +30,7 @@ package-lock.json
 yarn.lock
 
 # Build outputs from @wordpress/scripts
-blocks/**/index.js
 blocks/**/index.asset.php
-blocks/**/index.css
 blocks/**/index-rtl.css
 blocks/**/style-index.css
 blocks/**/style-index-rtl.css
