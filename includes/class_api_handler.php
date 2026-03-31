@@ -21,9 +21,6 @@ class ApiHandler {
     }
     
     
-    /**
-     * Fetch quotes from API and store in database
-     */
     public static function fetchAndStoreQuotes() {
         $instance = new self();
         $quotes = $instance->fetchQuotesFromApi();
@@ -35,9 +32,7 @@ class ApiHandler {
         return 0;
     }
     
-    /**
-     * Fetch quotes from external API
-     */
+
     public function fetchQuotesFromApi() {
         $settings = $this->getApiSettings();
         
@@ -75,9 +70,7 @@ class ApiHandler {
         return $data['quotes'] ?? [];
     }
     
-    /**
-     * Get API settings from database with cache
-     */
+
     private function getApiSettings() {
         $settings = get_transient('rqb_api_settings');
         
@@ -94,9 +87,7 @@ class ApiHandler {
         return $settings;
     }
     
-    /**
-     * Clear API settings cache
-     */
+
     public static function clearSettingsCache() {
         delete_transient('rqb_api_settings');
     }

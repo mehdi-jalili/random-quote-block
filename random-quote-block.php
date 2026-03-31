@@ -21,7 +21,7 @@ define('RQB_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('RQB_TABLE_NAME', 'random_quotes');
 
 
-// must change with autoload
+
 require_once RQB_PLUGIN_PATH . 'includes/class_database_manager.php';
 require_once RQB_PLUGIN_PATH . 'includes/class_api_handler.php';
 require_once RQB_PLUGIN_PATH . 'includes/class_quote_manager.php';
@@ -78,8 +78,6 @@ function rqb_render_block_callback($attributes) {
     return $html;
 }
 
-add_action('enqueue_block_editor_assets', 'rqb_editor_localize');
-
 
 function rqb_editor_localize() {
     if (!wp_script_is('random-quote-random-quote-editor-script', 'enqueued')) {
@@ -102,8 +100,7 @@ function rqb_editor_localize() {
         ]
     );
 }
-
-add_action('wp_ajax_rqb_refresh_quote', 'rqb_ajax_refresh_quote');
+add_action('enqueue_block_editor_assets', 'rqb_editor_localize');
 
 
 function rqb_ajax_refresh_quote() {
@@ -117,3 +114,4 @@ function rqb_ajax_refresh_quote() {
         'author' => $quote->author
     ]);
 }
+add_action('wp_ajax_rqb_refresh_quote', 'rqb_ajax_refresh_quote');

@@ -14,9 +14,7 @@ class QuoteManager {
         $count = $this->database_manager->getQuoteCount();
         
         if ($count === 0) {
-            // Try to fetch quotes if none exist
             ApiHandler::fetchAndStoreQuotes();
-            // Try again after fetch
             return $this->database_manager->getRandomQuote();
         }
         

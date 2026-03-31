@@ -82,7 +82,7 @@ class DatabaseManager {
     
 
     public function getRandomQuote() {
-        // Try cache first
+
         $cache_key = 'random_quote';
         $cached = wp_cache_get($cache_key, 'random_quote_block');
         

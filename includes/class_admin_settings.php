@@ -66,7 +66,7 @@ class AdminSettings {
     public function renderApiUrlField() {
         $value = get_option('rqb_api_url', 'https://dummyjson.com/quotes');
         echo '<input type="url" name="rqb_api_url" value="' . esc_attr($value) . '" class="regular-text" />';
-        echo '<p class="description">API endpoint for fetching quotes (must return JSON format)</p>';
+        echo '<p class="description">API endpoint for fetching quotes</p>';
     }
     
     public function renderLimitField() {
@@ -154,7 +154,7 @@ class AdminSettings {
     }
 }
 
-// AJAX handler for manual fetch
+
 add_action('wp_ajax_rqb_manual_fetch', function() {
     if (!check_ajax_referer('rqb_ajax_nonce', 'nonce', false)) {
         wp_send_json_error('Invalid security token');
