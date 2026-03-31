@@ -165,6 +165,8 @@ add_action('wp_ajax_rqb_manual_fetch', function() {
         wp_send_json_error('Unauthorized');
         return;
     }
+
+    ApiHandler::clearSettingsCache();
     
     $count = ApiHandler::fetchAndStoreQuotes();
     

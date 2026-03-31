@@ -84,6 +84,8 @@ function rqb_editor_localize() {
         return;
     }
 
+    ApiHandler::clearSettingsCache();
+
     $quote_manager = new RandomQuoteBlock\QuoteManager();
     $quote = $quote_manager->getRandomQuoteForDisplay();
 
