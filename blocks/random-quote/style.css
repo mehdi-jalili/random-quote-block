@@ -1,79 +1,16 @@
-/* Random Quote Block Styles */
 .random-quote-block {
     padding: 20px;
-    background: #f9f9f9;
-    border-radius: 8px;
-    text-align: center;
-    margin: 20px 0;
-    transition: all 0.3s ease;
+    border-left: 4px solid #333;
+    background: #f7f7f7;
 }
 
-.random-quote-block__text {
-    font-size: 1.2em;
-    line-height: 1.6;
-    margin: 0 0 15px 0;
-    font-style: italic;
-    font-weight: normal;
-    quotes: "“" "”" "‘" "’";
+.random-quote-block blockquote {
+    margin: 0;
+    font-size: 20px;
 }
 
-.random-quote-block__author {
+.random-quote-block cite {
     display: block;
     margin-top: 10px;
     font-style: normal;
-    font-weight: 600;
-    color: #555;
-}
-
-/* Alignment */
-.wp-block-random-quote-random-quote.alignleft {
-    text-align: left;
-    margin-right: 2em;
-}
-
-.wp-block-random-quote-random-quote.alignright {
-    text-align: right;
-    margin-left: 2em;
-}
-
-.wp-block-random-quote-random-quote.aligncenter {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Style Variations */
-.is-style-compact .random-quote-block {
-    padding: 10px;
-}
-
-.is-style-compact .random-quote-block__text {
-    font-size: 1em;
-    margin: 0;
-}
-
-.is-style-elegant .random-quote-block {
-    background: transparent;
-    border-left: 4px solid #007cba;
-    text-align: left;
-}
-
-.is-style-elegant .random-quote-block__text {
-    font-size: 1.4em;
-    font-family: Georgia, serif;
-}
-
-.is-style-elegant .random-quote-block__author {
-    color: #007cba;
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    .random-quote-block {
-        background: #2c2c2c;
-    }
-    
-    .random-quote-block__author {
-        color: #ccc;
-    }
 }

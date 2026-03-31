@@ -36,6 +36,7 @@ blocks/**/style-index.css
 blocks/**/style-index-rtl.css
 blocks/**/editor.css
 blocks/**/editor-rtl.css
+blocks/random-quote/build
 
 # PHPUnit / testing
 tests/coverage/

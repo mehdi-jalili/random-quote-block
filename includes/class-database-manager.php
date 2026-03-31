@@ -5,21 +5,20 @@ class DatabaseManager {
     private $wpdb;
     private $table_name;
     
+
     public function __construct() {
         global $wpdb;
         $this->wpdb = $wpdb;
         $this->table_name = $this->wpdb->prefix . RQB_TABLE_NAME;
     }
     
-    /**
-     * Create the quotes table
-     */
+    
     public function createTable() {
         $charset_collate = $this->wpdb->get_charset_collate();
         
         $sql = "CREATE TABLE IF NOT EXISTS {$this->table_name} (
-            id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-            quote_id bigint(20) NOT NULL,
+            id int UNSIGNED NOT NULL AUTO_INCREMENT,
+            quote_id int NOT NULL,
             quote_text longtext NOT NULL,
             author varchar(255) NOT NULL,
             created_at datetime DEFAULT CURRENT_TIMESTAMP,
@@ -35,16 +34,12 @@ class DatabaseManager {
         return $this->tableExists();
     }
     
-    /**
-     * Drop the quotes table
-     */
+
     public function dropTable() {
         $this->wpdb->query("DROP TABLE IF EXISTS {$this->table_name}");
     }
     
-    /**
-     * Check if table exists
-     */
+
     public function tableExists() {
         $result = $this->wpdb->get_var(
             $this->wpdb->prepare(
@@ -56,9 +51,7 @@ class DatabaseManager {
         return $result === $this->table_name;
     }
     
-    /**
-     * Save quotes to database
-     */
+
     public function saveQuotes($quotes) {
         if (empty($quotes)) {
             return 0;
@@ -82,15 +75,12 @@ class DatabaseManager {
             }
         }
         
-        // Clear cache after saving
         $this->clearCache();
         
         return $saved_count;
     }
     
-    /**
-     * Get random quote from database
-     */
+
     public function getRandomQuote() {
         // Try cache first
         $cache_key = 'random_quote';
@@ -111,9 +101,7 @@ class DatabaseManager {
         return $quote;
     }
     
-    /**
-     * Get all quotes
-     */
+
     public function getAllQuotes($limit = 100, $offset = 0) {
         return $this->wpdb->get_results(
             $this->wpdb->prepare(
@@ -124,9 +112,7 @@ class DatabaseManager {
         );
     }
     
-    /**
-     * Get total quote count
-     */
+
     public function getQuoteCount() {
         $cache_key = 'quote_count';
         $cached = wp_cache_get($cache_key, 'random_quote_block');
@@ -144,9 +130,7 @@ class DatabaseManager {
         return $count;
     }
     
-    /**
-     * Clear database cache
-     */
+
     private function clearCache() {
         wp_cache_delete('random_quote', 'random_quote_block');
         wp_cache_delete('quote_count', 'random_quote_block');
