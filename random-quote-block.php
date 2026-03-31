@@ -16,18 +16,23 @@ if (!defined('ABSPATH')) {
 
 define('RQB_VERSION', '1.0.0');
 define('RQB_PLUGIN_PATH', plugin_dir_path(__FILE__));
+define('RANDOM_QUOTE_BLOCK_PLUGIN_INC', RQB_PLUGIN_PATH . 'includes/');
 define('RQB_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('RQB_TABLE_NAME', 'random_quotes');
 
-require_once RQB_PLUGIN_PATH . 'includes/class-database-manager.php';
-require_once RQB_PLUGIN_PATH . 'includes/class-api-handler.php';
-require_once RQB_PLUGIN_PATH . 'includes/class-quote-manager.php';
-require_once RQB_PLUGIN_PATH . 'includes/class-admin-settings.php';
-require_once RQB_PLUGIN_PATH . 'includes/class-plugin-activator.php';
-require_once RQB_PLUGIN_PATH . 'includes/class-plugin-deactivator.php';
+
+// must change with autoload
+require_once RQB_PLUGIN_PATH . 'includes/class_database_manager.php';
+require_once RQB_PLUGIN_PATH . 'includes/class_api_handler.php';
+require_once RQB_PLUGIN_PATH . 'includes/class_quote_manager.php';
+require_once RQB_PLUGIN_PATH . 'includes/class_admin_settings.php';
+require_once RQB_PLUGIN_PATH . 'includes/class_plugin_activator.php';
+require_once RQB_PLUGIN_PATH . 'includes/class_plugin_deactivator.php';
+
 
 register_activation_hook(__FILE__, ['RandomQuoteBlock\PluginActivator', 'activate']);
 register_deactivation_hook(__FILE__, ['RandomQuoteBlock\PluginDeactivator', 'deactivate']);
+
 
 add_action('plugins_loaded', function() {
     if (is_admin()) {
@@ -35,15 +40,20 @@ add_action('plugins_loaded', function() {
     }
 
     new RandomQuoteBlock\QuoteManager();
+
+    if (!wp_next_scheduled('rqb_daily_fetch_quotes')) {
+        wp_schedule_event(time(), 'daily', 'rqb_daily_fetch_quotes');
+    }
+
 });
 
-add_action('init', 'rqb_register_block');
 
 function rqb_register_block() {
     register_block_type(RQB_PLUGIN_PATH . 'blocks/random-quote', [
         'render_callback' => 'rqb_render_block_callback'
     ]);
 }
+add_action('init', 'rqb_register_block');
 
 
 function rqb_render_block_callback($attributes) {
@@ -68,8 +78,8 @@ function rqb_render_block_callback($attributes) {
     return $html;
 }
 
-
 add_action('enqueue_block_editor_assets', 'rqb_editor_localize');
+
 
 function rqb_editor_localize() {
     if (!wp_script_is('random-quote-random-quote-editor-script', 'enqueued')) {
@@ -94,6 +104,7 @@ function rqb_editor_localize() {
 }
 
 add_action('wp_ajax_rqb_refresh_quote', 'rqb_ajax_refresh_quote');
+
 
 function rqb_ajax_refresh_quote() {
     check_ajax_referer('rqb_ajax_nonce', 'nonce');
