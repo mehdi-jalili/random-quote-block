@@ -70,7 +70,9 @@ class ApiHandler {
         return $data['quotes'] ?? [];
     }
     
-
+    /**
+     * Get API settings from database with cache
+     */
     private function getApiSettings() {
         $settings = get_transient('rqb_api_settings');
         
